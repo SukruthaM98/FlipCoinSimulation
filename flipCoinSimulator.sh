@@ -2,7 +2,7 @@
 
 echo " welcome to flip coin simulation "
 
-#number of heads and tails
+winingEstimation ( ) {
 countofhead=0
 countoftail=0
 
@@ -19,9 +19,12 @@ do
 		countoftail=$(($countoftail+1))
 	fi
 done
-echo " number of times head won" $countofhead
-echo "number of times tail won" $countoftail
+echo " number of times head won" $(($countofhead-1))
+echo "number of times tail won" $(($countoftail-1))
+}
 
+difference=$(( $countofhead - $countoftail ))
+winingEstimation
 if [ $countofhead -gt $countoftail ]
 then
 	echo " head won by" $(($countofhead-1))
@@ -30,4 +33,8 @@ then
 	echo " tail won by " $(($countoftail-1))
 else
 	echo " it is a tie between head and tail"
+	while [[ $difference -le 2 ]]
+	do
+		winingEstimation
+	done
 fi
